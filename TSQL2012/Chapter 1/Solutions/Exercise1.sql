@@ -1,6 +1,10 @@
 USE TSQL2012
----This is not the best way to use indexes.
-SELECT orderid, orderdate, custid,empid
+
+SELECT orderid,orderdate,custid,empid
+FROM Sales.Orders
+WHERE orderdate >= '20070601' AND orderdate <= '20070630'
+
+----This solution is also correct but inefficient for indexes
+SELECT orderid, orderdate, custid, empid 
 FROM Sales.Orders 
-WHERE orderdate = EOMONTH(orderdate)
-ORDER BY orderdate
+WHERE YEAR(orderdate) = 2007 AND MONTH(orderdate) = 6;

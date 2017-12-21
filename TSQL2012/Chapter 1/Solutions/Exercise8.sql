@@ -1,7 +1,12 @@
 USE TSQL2012
 
-SELECT orderid, SUM(unitprice*qty) AS totalValue
-FROM Sales.OrderDetails
-GROUP BY orderid
-HAVING SUM(unitprice*qty) > 10000
-ORDER BY totalValue DESC
+SELECT x.custid, x.region 
+FROM (
+     SELECT custid, region,
+	CASE 
+		WHEN  (region IS  NULL) THEN 1
+		ELSE 0
+	END AS value
+FROM Sales.Customers
+) x
+ORDER BY x.value

@@ -1,12 +1,10 @@
 USE TSQL2012
 
-SELECT x.custid, x.region 
-FROM (
-     SELECT custid, region,
-	CASE 
-		WHEN  (region IS  NULL) THEN 1
-		ELSE 0
-	END AS value
-FROM Sales.Customers
-) x
-ORDER BY x.value
+SELECT empid,firstname,lastname,titleofcourtesy,
+	CASE titleofcourtesy
+		WHEN 'Mr.' THEN 'Male'
+		WHEN 'Ms.' THEN 'Female'
+		WHEN 'Mrs.' THEN 'Female'
+		ELSE 'Unknown'	
+	END AS gender
+FROM HR.Employees

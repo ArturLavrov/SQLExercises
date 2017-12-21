@@ -1,7 +1,7 @@
 USE TSQL2012
 
-SELECT TOP(3) shipcountry, AVG(freight) AS avgfreight
+SELECT TOP(3) shipcountry, AVG(freight) AS avarage
 FROM Sales.Orders
-WHERE  orderdate >= '20070101' AND orderdate < '20080101'
+WHERE shippeddate >= '20070101' AND shippeddate <= '20080101'
 GROUP BY shipcountry
-ORDER BY avgfreight DESC;
+ORDER BY avarage DESC
