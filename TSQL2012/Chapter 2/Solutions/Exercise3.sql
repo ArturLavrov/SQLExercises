@@ -1,5 +1,5 @@
 USE TSQL2012
 
-SELECT C.custid,C.contactname,O.orderid,O.orderdate
-FROM Sales.Customers AS C 
-	LEFT OUTER JOIN Sales.Orders AS O ON C.custid = O.custid 
+SELECT empid,firstname,lastname
+FROM HR.Employees
+WHERE LEN(lastname) - LEN(REPLACE(lastname,'a','')) >= 2;

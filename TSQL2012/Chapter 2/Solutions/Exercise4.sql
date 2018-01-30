@@ -1,5 +1,7 @@
 USE TSQL2012
-SELECT C.custid,O.orderid
-FROM Sales.Customers AS C 
-LEFT OUTER JOIN Sales.Orders AS O ON C.custid = O.custid
-WHERE O.orderdate is NULL
+
+SELECT orderid, SUM(unitprice*qty) AS totalValue
+FROM Sales.OrderDetails
+GROUP BY orderid
+HAVING SUM(unitprice*qty) > 10000
+ORDER BY totalValue DESC
